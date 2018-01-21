@@ -95,6 +95,9 @@ for i in ${!ARR_PATHS[@]};do
 		echo 'proxy_set_header   X-Forwarded-Host $server_name;'
 		echo 'proxy_set_header   X-Forwarded-Port $server_port;'
 		echo 'proxy_set_header   X-Forwarded-Proto $scheme;'
+		echo 'sub_filter_once off;'
+		echo 'sub_filter_types application/json;'
+		echo "sub_filter \"${TMP_I}\" \"${TMP_O}\";"
 		echo "}"
 	else
 		echo "location ${ARR_PATHS[$i]} {"
