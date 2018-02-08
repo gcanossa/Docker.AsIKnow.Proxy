@@ -70,6 +70,9 @@ done
 
 echo "server {"
 echo "listen $CFG_LISTEN;"
+for prop in `printenv | grep -e "^CFG_SERVER_PROP" | sed -e "s/^CFG_SERVER_PROP_//"`; do
+	echo "`echo $prop | cut -f1 -d=` `echo $prop | cut -f2 -d=`;"
+done
 
 for i in ${!ARR_PATHS[@]};do		
 	if [[ ${ARR_PATHS[$i]} = !* ]]
